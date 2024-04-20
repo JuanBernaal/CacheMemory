@@ -9,8 +9,9 @@ una simulacion de la DRAM
 #define MEM_DRAM_H
 
 #include <vector>
+#include "memory.h"
 
-class DRam {
+class DRam : public Memory {
 	private:
 	std::vector<int> mem;
 	public:
@@ -19,8 +20,9 @@ class DRam {
 	DRam( const std::vector<int> & );
 	
 	// metodos
-	void write( int, int );
-	int read( int );	
+	void write( int, int ) override;
+	int read( int ) override;
+	std::list<std::pair<int,int>> getReport() override;
 };
 
 
