@@ -9,15 +9,15 @@ Un generador con queries aleatorias para probar la implementacion de la cache
 #include <random>
 #include <ctime>
 
-const int Tope = (1<<10); // esto no lo he revisado bien
 const int Instrucciones = 10;
-const int tamano = 4;
+const int tamano = 3072;
+const int wordBitSize = 8; // 1 byte
 
 int main(  ) {
 	
 	std::mt19937 mt( time(NULL) );
 	
-	for ( int i = 0 ; i < tamano ; ++i ) std::cout << ' ' << mt();
+	for ( int i = 0 ; i < tamano ; ++i ) std::cout << ' ' << mt() % ( 1 << wordBitSize );
 	std::cout << '\n';
 	
 	std::cout << Instrucciones << '\n';
@@ -27,7 +27,7 @@ int main(  ) {
 		
 		std::cout << type << ' ' << addr;
 		if ( type == 0 ) {
-			int val = mt();
+			int val = mt() % ( 1 << wordBitSize );
 			std::cout << ' ' << val;
 		}
 		std::cout << '\n';
