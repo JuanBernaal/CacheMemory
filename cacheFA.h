@@ -12,22 +12,32 @@ representa
 #include <vector>
 #include <map>
 
+#define BlockSize 32
+
 class CacheFA : public Memory {
 	private:
 	
 	std::map<int,int> tagLocation;
 	// ¿de esta manera vamos a manejar el bloque?
-	std::vector<int> block;
+	std::vector<std::vector<Word>> block;
+	std::vector<int> tag;
+	std::vector<bool> validBit;
 	
 	int FIFOhead;
 	Memory *upperLevel;
+	
+	// funciones auxiliares
+	static int getTag( int );
+	static int getOffset( int );
+	
+	void handleMiss( int );
 	
 	public:
 	// constructor
 	CacheFA ( int, Memory * );
 	
 	// metodos
-	void write( int, int ) override;
+	void write( int, Word ) override;
 	int read( int ) override;
 	std::list<std::pair<int,int>> getReport() override;
 	

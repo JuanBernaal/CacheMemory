@@ -10,6 +10,9 @@ esta es una clase virtual que da los lineamientos para las operaciones basicas q
 #define MEMORY_H
 
 #include <list>
+#include <stdint.h>
+
+typedef int8_t Word;
 
 class Memory {
 	protected:
@@ -20,7 +23,7 @@ class Memory {
 	
 	Memory() : processedQueries( 0 ), missAmount( 0 ) {};
 	
-	virtual void write( int, int ) = 0;
+	virtual void write( int, Word ) = 0;
 	virtual int read( int ) = 0;
 	virtual std::list<std::pair<int,int>> getReport() = 0;
 };

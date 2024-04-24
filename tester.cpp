@@ -23,11 +23,11 @@ void leerReporte( std::list<std::pair<int,int>> &report ) {
 	}
 }
 
-const int numeroPrueba = 1;
+const int numeroPrueba = 2;
 
 int main() {
 	
-	std::vector<int> strt( tamano );
+	std::vector<Word> strt( tamano );
 	for ( int i = 0 ; i < tamano; ++i ) std::cin >> strt[i];
 	
 	Memory *memory;

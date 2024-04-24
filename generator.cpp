@@ -9,11 +9,12 @@ Un generador con queries aleatorias para probar la implementacion de la cache
 #include <random>
 #include <ctime>
 
-const int Instrucciones = 10;
 const int tamano = 3072;
 const int wordBitSize = 8; // 1 byte
 
 int main(  ) {
+	
+	int Instrucciones; std::cin >> Instrucciones;
 	
 	std::mt19937 mt( time(NULL) );
 	

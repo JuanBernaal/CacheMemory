@@ -10,11 +10,11 @@ una simulacion de la DRAM
 DRam::DRam( int n ) : Memory() {
 	this->mem.resize( n );
 }
-DRam::DRam( const std::vector<int> &copy ) : Memory() {
+DRam::DRam( const std::vector<Word> &copy ) : Memory() {
 	this->mem = copy;
 }
 	
-void DRam::write( int address, int value ) {
+void DRam::write( int address, Word value ) {
 	++this->processedQueries;
 	this->mem[address] = value;
 }

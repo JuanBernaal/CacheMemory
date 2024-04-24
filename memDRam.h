@@ -13,14 +13,14 @@ una simulacion de la DRAM
 
 class DRam : public Memory {
 	private:
-	std::vector<int> mem;
+	std::vector<Word> mem;
 	public:
 	// constructores
 	DRam( int );
-	DRam( const std::vector<int> & );
+	DRam( const std::vector<Word> & );
 	
 	// metodos
-	void write( int, int ) override;
+	void write( int, Word ) override;
 	int read( int ) override;
 	std::list<std::pair<int,int>> getReport() override;
 };
