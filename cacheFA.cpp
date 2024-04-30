@@ -1,15 +1,18 @@
 /*
-Autor: Oscar Vargas Pabon
+Autor: Oscar Vargas Pabon, Juan David Bernal
 Fecha: 19/04/2024
 */
 
 #include "cacheFA.h"
+#include <iostream>
 
 CacheFA::CacheFA( int sz, Memory *upperLevel ) : Memory() {
-	this->upperLevel = upperLevel;
-	
+	this->upperLevel = upperLevel;	
+
 	this->block.assign( sz, std::vector<Word>( BlockSize ) );
+
 	this->validBit.assign( sz, false );
+
 	this->tag.resize( sz );
 	
 	this->FIFOhead = 0;
@@ -67,7 +70,9 @@ void CacheFA::write( int address, Word value ) {
 	//escribe en la memoria superior
 	this->upperLevel->write( address, value );
 	
+	// verifica si esta en la cache
 	int myTag = CacheFA::getTag( address );
+
 	if ( this->tagLocation.count( myTag ) ) {
 		// no hay un miss
 		this->block[this->tagLocation[myTag]][CacheFA::getOffset( address )] = value;
@@ -82,6 +87,7 @@ int CacheFA::read( int address ) {
 	++this->processedQueries;	
 	
 	int myTag = CacheFA::getTag( address );
+
 	if ( !this->tagLocation.count( myTag ) ) {
 		// ocurre un miss
 		this->handleMiss( address );

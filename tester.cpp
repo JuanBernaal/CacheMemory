@@ -1,5 +1,5 @@
 /*
-Autor: Oscar Vargas Pabon
+Autor: Oscar Vargas Pabon, Juan David Bernal
 Fecha: 18/04/2024
 
 para hacer el test que bota el generador
@@ -7,11 +7,11 @@ para hacer el test que bota el generador
 
 #include <iostream>
 #include <vector>
+#include <stdio.h>
 
 #include "cacheFA.h"
 #include "memDRam.h"
 
-const int tamano = 3072;
 const int cantidadBloques = 64;
 
 void leerReporte( std::list<std::pair<int,int>> &report ) {
@@ -27,8 +27,10 @@ const int numeroPrueba = 2;
 
 int main() {
 	
+	int tamano;
+	std::cin >> tamano;
 	std::vector<Word> strt( tamano );
-	for ( int i = 0 ; i < tamano; ++i ) std::cin >> strt[i];
+	for ( int i = 0 ; i < tamano; ++i ) scanf("%d", &strt[i]);
 	
 	Memory *memory;
 	if ( numeroPrueba == 1 ) {

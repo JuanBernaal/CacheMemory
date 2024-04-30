@@ -1,5 +1,5 @@
 /*
-Autor: Oscar Vargas Pabon
+Autor: Oscar Vargas Pabon, Juan David Bernal
 Fecha: 19/04/2024
 
 esta es una clase virtual que da los lineamientos para las operaciones basicas que

@@ -1,5 +1,5 @@
 /*
-Autor: Oscar Vargas Pabon
+Autor: Oscar Vargas Pabon, Juan David Bernal
 Fecha: 18/04/2024
 
 una simulacion de la DRAM

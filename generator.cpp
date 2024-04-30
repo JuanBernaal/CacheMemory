@@ -1,5 +1,5 @@
 /*
-Autor: Oscar Vargas Pabon
+Autor: Oscar Vargas Pabon, Juan David Bernal
 Fecha: 18/04/2024
 
 Un generador con queries aleatorias para probar la implementacion de la cache
@@ -17,9 +17,9 @@ int main(  ) {
 	int Instrucciones; std::cin >> Instrucciones;
 	
 	std::mt19937 mt( time(NULL) );
-	
-	for ( int i = 0 ; i < tamano ; ++i ) std::cout << ' ' << mt() % ( 1 << wordBitSize );
-	std::cout << '\n';
+
+	std::cout << tamano << '\n';
+	for ( int i = 0 ; i < tamano ; ++i ) std::cout << mt() % ( 1 << wordBitSize ) << '\n';
 	
 	std::cout << Instrucciones << '\n';
 	
