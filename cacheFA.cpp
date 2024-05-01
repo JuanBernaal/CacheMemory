@@ -4,7 +4,6 @@ Fecha: 19/04/2024
 */
 
 #include "cacheFA.h"
-#include <iostream>
 
 CacheFA::CacheFA( int sz, Memory *upperLevel ) : Memory() {
 	this->upperLevel = upperLevel;	
@@ -47,19 +46,16 @@ void CacheFA::handleMiss( int address ) {
 		this->tagLocation.erase( this->tag[this->FIFOhead] );
 	}
 	
-	//apago los bits que representan el blockSize
+	// traer el bloque requerido de la memoria superior
 	int semiTag = address & ( ~(BlockSize-1) );
-	
 	for ( int i = 0 ; i < BlockSize ; ++i ) {
 		this->block[this->FIFOhead][i] = this->upperLevel->read( semiTag|i );
 	}
 	
-	// ya tengo los datos, modifico lo que falta
+	// ya tengo los datos, modifico los datos restantes ( tag, validBit, etc )
 	this->tag[this->FIFOhead] = CacheFA::getTag( address );
 	this->validBit[this->FIFOhead] = true;
 	this->tagLocation.insert( std::pair<int,int>( this->tag[this->FIFOhead], this->FIFOhead ) );
-	
-	// modifico la nueva cabeza
 	this->FIFOhead = ( this->FIFOhead + 1 ) % ( (int) this->tag.size() );
 }
 
@@ -72,9 +68,8 @@ void CacheFA::write( int address, Word value ) {
 	
 	// verifica si esta en la cache
 	int myTag = CacheFA::getTag( address );
-
 	if ( this->tagLocation.count( myTag ) ) {
-		// no hay un miss
+		// no hay un miss, entonces modifica el valor
 		this->block[this->tagLocation[myTag]][CacheFA::getOffset( address )] = value;
 	} else {
 		// ocurre un miss
@@ -86,15 +81,15 @@ void CacheFA::write( int address, Word value ) {
 int CacheFA::read( int address ) {
 	++this->processedQueries;	
 	
+	// verifica si esta en la cache
 	int myTag = CacheFA::getTag( address );
-
 	if ( !this->tagLocation.count( myTag ) ) {
 		// ocurre un miss
 		this->handleMiss( address );
 	}
 	
-	// leo de la cache	
-	int answer = this->block[this->tagLocation[myTag]][CacheFA::getOffset( address )];
+	// leo el dato de la cache y lo retorno
+	int answer = this->block[this->tagLocation[myTag]][CacheFA::getOffset( address )];	
 	return answer;
 }
 //______________________________________________

@@ -16,8 +16,7 @@ class DRam : public Memory {
 	std::vector<Word> mem;
 	public:
 	// constructores
-	DRam( int );
-	DRam( const std::vector<Word> & );
+	DRam( std::vector<Word> );
 	
 	// metodos
 	void write( int, Word ) override;
