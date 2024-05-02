@@ -5,7 +5,9 @@ Fecha: 19/04/2024
 
 #include "cacheFA.h"
 
-CacheFA::CacheFA( int sz, Memory *upperLevel ) : Memory() {
+CacheFA::CacheFA( int sz, Memory *upperLevel ) { 
+	this->processedQueries = this->missAmount = 0;
+	
 	this->upperLevel = upperLevel;	
 
 	this->block.assign( sz, std::vector<Word>( BlockSize ) );
@@ -58,13 +60,12 @@ void CacheFA::handleMiss( int address ) {
 	this->tagLocation.insert( std::pair<int,int>( this->tag[this->FIFOhead], this->FIFOhead ) );
 	this->FIFOhead = ( this->FIFOhead + 1 ) % ( (int) this->tag.size() );
 }
-
 // escribe con Write Through
 void CacheFA::write( int address, Word value ) {
 	++this->processedQueries;
-	
+
 	//escribe en la memoria superior
-	this->upperLevel->write( address, value );
+	(this->upperLevel)->write( address, value );
 	
 	// verifica si esta en la cache
 	int myTag = CacheFA::getTag( address );

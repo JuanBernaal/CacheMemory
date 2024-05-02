@@ -7,7 +7,16 @@ una simulacion de la DRAM
 
 #include "memDRam.h"
 
-DRam::DRam( std::vector<Word> copy ) : mem( copy ) {};
+DRam::DRam( int sz ) {
+	this->processedQueries = this->missAmount = 0;
+	mem.resize( sz );
+}
+
+DRam::DRam( std::vector<Word> copy ) : DRam( copy.size() ){
+	for ( int i = 0 ; i < (int)copy.size() ; ++i ) mem[i] = copy[i];
+}
+
+DRam::~DRam() {};
 	
 void DRam::write( int address, Word value ) {
 	++this->processedQueries;

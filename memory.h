@@ -21,11 +21,11 @@ class Memory {
 	
 	public:
 	
-	Memory() : processedQueries( 0 ), missAmount( 0 ) {};
-	
 	virtual void write( int, Word ) = 0;
 	virtual int read( int ) = 0;
 	virtual std::list<std::pair<int,int>> getReport() = 0;
+	
+	virtual ~Memory() = default;
 };
 
 #endif

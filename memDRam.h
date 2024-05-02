@@ -16,12 +16,15 @@ class DRam : public Memory {
 	std::vector<Word> mem;
 	public:
 	// constructores
+	DRam( int );
 	DRam( std::vector<Word> );
 	
 	// metodos
 	void write( int, Word ) override;
 	int read( int ) override;
 	std::list<std::pair<int,int>> getReport() override;
+	
+	~DRam();
 };
 
 

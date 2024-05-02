@@ -1,3 +1,3 @@
 @echo off
-g++ tester.cpp memDRam.cpp cacheFA.cpp -o main
+g++ -Wall -Wextra -Werror tester.cpp memDRam.cpp cacheFA.cpp -o main
 echo on
