@@ -12,7 +12,7 @@ esta es una clase virtual que da los lineamientos para las operaciones basicas q
 #include <list>
 #include <stdint.h>
 
-typedef int8_t Word;
+typedef uint8_t Word;
 
 class Memory {
 	protected:

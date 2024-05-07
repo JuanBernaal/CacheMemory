@@ -19,8 +19,11 @@ int main(  ) {
 	std::mt19937 mt( time(NULL) );
 
 	std::cout << tamano << '\n';
-	for ( int i = 0 ; i < tamano ; ++i ) std::cout << mt() % ( 1 << wordBitSize ) << '\n';
-	
+	for ( int i = 0 ; i < tamano ; ++i ) {
+		int tmp = abs( mt() % ( 1 << wordBitSize ) );
+		std::cout << mt() % ( 1 << wordBitSize ) << '\n';
+	}
+	//return 0;
 	std::cout << Instrucciones << '\n';
 	
 	for ( int i = 0 ; i < Instrucciones ; ++i ) {

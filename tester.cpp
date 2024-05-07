@@ -23,12 +23,18 @@ void leerReporte( std::list<std::pair<int,int>> &report ) {
 }
 
 void test( int numeroPrueba ) {
-	int tamano; scanf( "%d", &tamano );
+	int tamano;
+	scanf( " %d", &tamano );
 	std::vector<Word> strt( tamano );
 	for ( int i = 0 ; i < tamano; ++i ) {
-		int tmp; scanf("%d", &tmp );
+		int tmp;
+		scanf(" %d", &tmp );
 		strt[i] = tmp;
 	}
+	
+	// printf("[strt]");
+	// for ( int i = 0 ; i < tamano ; ++i ) printf(" %d", strt[i] );
+	// printf("\n");
 	
 	Memory *memory = NULL;
 	if ( numeroPrueba == 1 ) {
